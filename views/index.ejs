@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>All Pets Show Here</h2>           
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Color</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% for(const pet of pets){%>
+            <tr>
+                <td><%= pet.name %></td>
+                <td><%= pet.age %></td>
+                <td><%= pet.color %></td>
+                <td>
+                    <a class="btn btn-primary" href="/mongooses/<%= pet._id %>">Show</a>
+                    <a class="btn btn-info" href="/mongooses/edit/<%= pet._id %>">Edit</a>
+                    <form action="/mongooses/destroy/<%= pet._id %>" method="post">
+                    <input class="btn btn-danger" type="submit"  value="Delete">
+                    </form>
+                </td>
+            </tr>
+        <%}%>
+    </tbody>
+  </table>
+</div>
+<br><br><br>
+<a class="btn btn-primary" href="/mongooses/new">Add New</a>
+</body>
+</html>
